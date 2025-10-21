@@ -232,21 +232,21 @@ const copyCitation = () => {
         <div class="agents-grid">
           <div class="agent-card">
             <div class="agent-icon">🎭</div>
-            <h4>Role-Playing Agent (RPA)</h4>
+            <h4>Role-Playing Agent<br/>(RPA)</h4>
             <p>
               Takes a persona profile and task context as input, generates behavioral responses by role-playing the given persona.
             </p>
           </div>
           <div class="agent-card">
             <div class="agent-icon">🔍</div>
-            <h4>Behavior Analysis Agent (BAA)</h4>
+            <h4>Behavior Analysis Agent<br/>(BAA)</h4>
             <p>
               Compares LLM-predicted behaviors with human ground truth, identifies underlying cognitive divergences through free-form or theory-grounded structured analysis.
             </p>
           </div>
           <div class="agent-card">
             <div class="agent-icon">⚡</div>
-            <h4>Persona Refinement Agent (PRA)</h4>
+            <h4>Persona Refinement Agent<br/>(PRA)</h4>
             <p>
               Takes current persona, divergence analysis, and context to generate revised persona incorporating feedback while preserving effective elements. Terminates when persona converges or max iterations reached.
             </p>
