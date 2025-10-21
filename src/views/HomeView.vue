@@ -147,7 +147,7 @@ const copyCitation = () => {
         <div class="affiliation"><sup>2</sup>Stanford University, USA</div>
       </div>
       <div class="row center">
-        <pre>{lu.yuxuan, d.wang}@northeastern.edu</pre>
+        <pre>{b.yao, d.wang}@northeastern.edu</pre>
       </div>
     </div>
     <div class="row center" style="margin-bottom: 48px">
