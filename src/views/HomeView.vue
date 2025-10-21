@@ -230,7 +230,7 @@ const copyCitation = () => {
 
     <!-- Three-Agent Architecture -->
     <div class="row center" style="margin-top: 48px">
-      <h3>Three-Agent Architecture</h3>
+      <h3 style="font-size: 24px; font-weight: 600; color: #333; text-align: center;">Three-Agent Architecture</h3>
     </div>
     <div class="row center" style="width: 100%">
       <div class="agent-architecture" style="max-width: 1000px; width: 100%">
@@ -262,7 +262,7 @@ const copyCitation = () => {
 
     <!-- Case Study -->
     <div class="row center" style="margin-top: 48px">
-      <h3 style="text-align: center;">Case Study: Mental Health Expression - Social Media Post</h3>
+      <h3 style="font-size: 24px; font-weight: 600; color: #333; text-align: center;">Case Study: Mental Health Expression - Social Media Post</h3>
     </div>
     <div class="row center" style="width: 100%">
       <div class="case-study" style="max-width: 1000px; width: 100%">
