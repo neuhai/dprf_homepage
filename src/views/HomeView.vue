@@ -4,6 +4,7 @@ import Chat from '@/views/Chat.vue'
 import { ref, computed } from 'vue'
 import { useDialog } from 'naive-ui'
 import dprfExampleData from '@/data/dprf_example.json'
+import fullExampleData from '../../example_1014.json'
 
 // Import author images
 import yuxuanImg from '@/assets/yuxuan.jpg'
@@ -22,6 +23,9 @@ const showMessage = ref(false)
 const currentPersonaIndex = ref(0)
 const personas = dprfExampleData.personas
 const totalPersonas = personas.length
+const viewType = ref<'persona' | 'response' | 'analysis'>('persona')
+
+const MAX_CONTENT_LENGTH = 1500 // Maximum characters to display
 
 const currentPersona = computed(() => personas[currentPersonaIndex.value])
 const previousPersona = computed(() => 
@@ -36,6 +40,34 @@ const goToPersona = (index: number) => {
 
 const nextPersona = () => goToPersona(currentPersonaIndex.value + 1)
 const prevPersona = () => goToPersona(currentPersonaIndex.value - 1)
+
+// Get content based on view type
+const getCurrentContent = computed(() => {
+  const iterationData = (fullExampleData as any).dprf_iteration_details?.[currentPersonaIndex.value]
+  
+  if (viewType.value === 'response') {
+    const response = iterationData?.generated_response || ''
+    return truncateText(response)
+  } else if (viewType.value === 'analysis') {
+    const analysis = iterationData?.analysis || ''
+    return truncateText(analysis)
+  } else {
+    return currentPersona.value.persona
+  }
+})
+
+const truncateText = (text: string): string => {
+  if (text.length <= MAX_CONTENT_LENGTH) {
+    return text
+  }
+  return text.substring(0, MAX_CONTENT_LENGTH) + '...'
+}
+
+const viewOptions = [
+  { label: 'Refined Persona', value: 'persona' },
+  { label: 'Generated Response', value: 'response' },
+  { label: 'Analysis Result', value: 'analysis' }
+]
 
 // Calculate differences (simple word-level diff)
 const getHighlightedPersona = computed(() => {
@@ -270,7 +302,15 @@ const copyCitation = () => {
         <!-- Persona Viewer -->
         <div class="persona-viewer">
           <div class="persona-header">
-            <h4>Iteration {{ currentPersona.iteration }} Persona</h4>
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <h4 style="margin: 0;">Iteration {{ currentPersona.iteration }}</h4>
+              <n-select
+                v-model:value="viewType"
+                :options="viewOptions"
+                style="width: 200px;"
+                size="small"
+              />
+            </div>
             <div class="persona-navigation">
               <n-button
                 :disabled="currentPersonaIndex === 0"
@@ -293,11 +333,12 @@ const copyCitation = () => {
           </div>
 
           <div class="persona-content">
-            <div v-if="currentPersonaIndex === 0" class="persona-text">
-              {{ currentPersona.persona }}
+            <div v-if="viewType === 'persona' && currentPersonaIndex === 0" class="persona-text">
+              {{ getCurrentContent }}
             </div>
-            <div v-else class="persona-text" v-html="getHighlightedPersona"></div>
-            <div v-if="currentPersonaIndex > 0" class="legend">
+            <div v-else-if="viewType === 'persona' && currentPersonaIndex > 0" class="persona-text" v-html="getHighlightedPersona"></div>
+            <div v-else class="persona-text" style="white-space: pre-wrap;">{{ getCurrentContent }}</div>
+            <div v-if="viewType === 'persona' && currentPersonaIndex > 0" class="legend">
               <span class="legend-item">
                 <span class="legend-color changed"></span>
                 <span>Modified/Added Text</span>
