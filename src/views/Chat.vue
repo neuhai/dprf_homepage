@@ -81,7 +81,7 @@
               </p>
               <img
                 v-else-if="item.type === 'image'"
-                :src="'data:' + item.source.media_type + ';base64,' + item.source.data"
+                :src="'data:' + item.source?.media_type + ';base64,' + item.source?.data"
                 alt="Uploaded Image"
                 class="image"
               />
@@ -298,7 +298,7 @@ onMounted(async () => {
   try {
     // Dynamic import of the personas JSON file
     const personasModule = await import('@/data/personas.json')
-    all_personas.value = personasModule.default
+    all_personas.value = personasModule.default as any
     isPersonasLoading.value = false
 
     // Initialize backend connection
@@ -527,7 +527,9 @@ onMounted(() => {
 function startTypewriterEffect() {
   if (!typewriterActive.value) return
 
-  clearInterval(typewriterInterval.value)
+  if (typewriterInterval.value !== null) {
+    clearInterval(typewriterInterval.value)
+  }
 
   typewriterInterval.value = setInterval(() => {
     if (typewriterPaused.value) return
@@ -582,7 +584,9 @@ function handleInputChange() {
 
 // Clean up on component unmount
 onUnmounted(() => {
-  clearInterval(typewriterInterval.value)
+  if (typewriterInterval.value !== null) {
+    clearInterval(typewriterInterval.value)
+  }
 })
 
 // Fix the event parameter type in handleFileUpload
@@ -872,8 +876,10 @@ watch(showModal, (newValue) => {
     if (selectButtonRef.value && isInitialLoad.value) {
       // Remove primary type after first click
       nextTick(() => {
-        const button = selectButtonRef.value.$el
-        button.classList.remove('emphasis-effect')
+        const button = (selectButtonRef.value as any)?.$el
+        if (button) {
+          button.classList.remove('emphasis-effect')
+        }
       })
       isInitialLoad.value = false
     }
@@ -881,7 +887,7 @@ watch(showModal, (newValue) => {
     // Modal is closing and persona is selected, scroll to input
     nextTick(() => {
       if (chatInputRef.value) {
-        chatInputRef.value.focus()
+        (chatInputRef.value as any).focus()
 
         // Scroll to the input
         const inputElement = document.getElementById('chat-input')

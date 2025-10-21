@@ -67,7 +67,7 @@ const getHighlightedPersona = computed(() => {
 
 const copyCitation = () => {
   if (citationText.value) {
-    const text = citationText.value.textContent
+    const text = citationText.value.textContent || ''
     navigator.clipboard
       .writeText(text)
       .then(() => {
