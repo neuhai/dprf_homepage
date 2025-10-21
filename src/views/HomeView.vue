@@ -23,7 +23,7 @@ const showMessage = ref(false)
 const currentPersonaIndex = ref(0)
 const personas = dprfExampleData.personas
 const totalPersonas = personas.length
-const viewType = ref<'persona' | 'response' | 'analysis'>('persona')
+const viewType = ref<'persona' | 'response' | 'analysis'>('response')
 
 const MAX_CONTENT_LENGTH = 1500 // Maximum characters to display
 
@@ -64,9 +64,9 @@ const truncateText = (text: string): string => {
 }
 
 const viewOptions = [
-  { label: 'Refined Persona', value: 'persona' },
   { label: 'Generated Response', value: 'response' },
-  { label: 'Analysis Result', value: 'analysis' }
+  { label: 'Analysis Result', value: 'analysis' },
+  { label: 'Refined Persona', value: 'persona' }
 ]
 
 // Calculate differences (simple word-level diff)
