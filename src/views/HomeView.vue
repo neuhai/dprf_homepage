@@ -172,7 +172,7 @@ const copyCitation = () => {
           Paper
         </n-button>
       </a>
-      <a href="https://github.com/neuhai/uxagent" target="_blank">
+      <a href="https://github.com/neuhai/dprf" target="_blank">
         <n-button round size="large" type="info">
           <template #icon>
             <n-icon>
@@ -189,32 +189,6 @@ const copyCitation = () => {
             </n-icon>
           </template>
           Code
-        </n-button>
-      </a>
-      <a href="https://huggingface.co/datasets/NEU-HAI/UXAgent" target="_blank">
-        <n-button round size="large" type="info">
-          <template #icon>
-            <n-icon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <ellipse cx="12" cy="6" rx="8" ry="3"></ellipse>
-                  <path d="M4 6v6a8 3 0 0 0 16 0V6"></path>
-                  <path d="M4 12v6a8 3 0 0 0 16 0v-6"></path>
-                </g>
-              </svg>
-            </n-icon>
-          </template>
-          Data
         </n-button>
       </a>
     </div>
@@ -253,14 +227,13 @@ const copyCitation = () => {
         </p>
       </div>
     </div>
-    <div class="row center">
-      <h2>DPRF Framework Overview</h2>
-    </div>
 
     <!-- Three-Agent Architecture -->
+    <div class="row center" style="margin-top: 48px">
+      <h3>Three-Agent Architecture</h3>
+    </div>
     <div class="row center" style="width: 100%">
       <div class="agent-architecture" style="max-width: 1000px; width: 100%">
-        <h3 class="text-center mb-4">Three-Agent Architecture</h3>
         <div class="agents-grid">
           <div class="agent-card">
             <div class="agent-icon">🎭</div>
@@ -289,7 +262,7 @@ const copyCitation = () => {
 
     <!-- Case Study -->
     <div class="row center" style="margin-top: 48px">
-      <h3>Case Study: Mental Health Expression - Social Media Post</h3>
+      <h3 style="text-align: center;">Case Study: Mental Health Expression - Social Media Post</h3>
     </div>
     <div class="row center" style="width: 100%">
       <div class="case-study" style="max-width: 1000px; width: 100%">
