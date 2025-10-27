@@ -12,7 +12,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/dprf_homepage/',
   plugins: [
     vue(),
     vueJsx(),
